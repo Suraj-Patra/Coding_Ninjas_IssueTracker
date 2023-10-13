@@ -26,9 +26,9 @@ const ExpressError = require('./utils/ExpressError.util');
 /* ---------------------- Database -------------------------------- */
 
 // For connecting to MongoDB Atlas :
-const dbUrl = 'mongodb://127.0.0.1:27017/issue-tracker';
-// const dbUrl =
-//   process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/issue-tracker';
+// const dbUrl = 'mongodb://127.0.0.1:27017/issue-tracker';
+const dbUrl =
+  process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/issue-tracker';
 mongoose
   .connect(dbUrl)
   .then((res) => console.log('MongoDB Connected'))
