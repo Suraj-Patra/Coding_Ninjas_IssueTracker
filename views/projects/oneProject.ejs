@@ -1,0 +1,95 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="project_details_container">
+  <div class="project_container">
+    <div>
+      <p><span>Project Name : </span><%= project.title %></p>
+      <p><span>Project Description : </span><%= project.description %></p>
+      <p><span>Submitted by : </span><%= project.author.username %></p>
+    </div>
+
+    <div>
+      <% if(currentUser && project.author.equals(currentUser._id)) { %>
+      <div>
+        <form
+          action="/deleteproject/<%= project._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button type="submit">Delete Project</button>
+        </form>
+      </div>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="issue_container">
+    <div class="issue_form_container">
+      <% if(currentUser) { %>
+      <h2>Create an Issue</h2>
+      <form action="/<%= project._id %>/issues" method="POST">
+        <div>
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" />
+        </div>
+        <div>
+          <label for="description">Issue Description</label>
+          <textarea
+            name="description"
+            id="description"
+            cols="30"
+            rows="3"
+            required
+          ></textarea>
+        </div>
+        <div class="issue_labels">
+          <div>
+            <label
+              ><input name="labels" type="checkbox" value="easy" />Easy</label
+            >
+          </div>
+          <div>
+            <label
+              ><input
+                name="labels"
+                type="checkbox"
+                value="medium"
+              />Medium</label
+            >
+          </div>
+          <div>
+            <label
+              ><input name="labels" type="checkbox" value="hard" />Hard</label
+            >
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      <% } %>
+    </div>
+    <div class="issue_card_container">
+      <h5>All Issues</h5>
+      <% for(let issue of project.issues) { %>
+      <div class="issue_card">
+        <div class="issue_info">
+          <p><%= issue.title %></p>
+          <p><%= issue.description %></p>
+          <div>
+            <% for(let label of issue.labels) { %>
+            <span><%= label %></span>
+            <% } %> <% if(currentUser && issue.author.equals(currentUser._id)) {
+            %>
+          </div>
+        </div>
+        <h4>Created By <%= issue.author.username %></h4>
+        <form
+          action="/<%= project._id %>/issues/<%= issue._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button>Delete</button>
+        </form>
+        <% } %>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>

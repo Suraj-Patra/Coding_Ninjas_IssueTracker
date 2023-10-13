@@ -1,0 +1,17 @@
+<% layout('layouts/boilerplate') %>
+
+<h1>All Projects</h1>
+<div>
+  <a href="/newProject">Add Project</a>
+</div>
+<div class="card_container">
+  <% for( let project of projects ) { %>
+  <div class="card">
+    <h5><%= project.title %></h5>
+    <p>
+      <small>By <%= project.author.username %> </small>
+    </p>
+    <a href="/oneProject/<%=project._id%>"><%= project.title %></a>
+  </div>
+  <% } %>
+</div>

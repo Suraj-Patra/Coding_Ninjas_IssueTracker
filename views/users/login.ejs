@@ -1,0 +1,17 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="form_container">
+  <h5>Login</h5>
+  <form action="/users/login" method="POST">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" autofocus required />
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+    </div>
+    <button>Login</button>
+  </form>
+</div>

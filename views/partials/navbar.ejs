@@ -1,0 +1,14 @@
+<nav class="navbar">
+  <div class="project_section">
+    <a href="/">Home</a>
+    <a href="/newProject">New Project</a>
+  </div>
+  <div class="user_section">
+    <% if(!currentUser) { %>
+    <a href="/users/login">Login</a>
+    <a href="/users/register">Register</a>
+    <% } else { %>
+    <a href="/users/logout">Logout</a>
+    <% } %>
+  </div>
+</nav>
